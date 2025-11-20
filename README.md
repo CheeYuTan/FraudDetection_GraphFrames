@@ -100,7 +100,6 @@ GraphFrames is included in **Databricks Runtime for ML**. Databricks ships an **
 Fraud GraphFrames/
 ├── 01_Dataset_Generation.py           # Generate synthetic fraud data with patterns
 ├── 02_GraphFrames_Fraud_Detection.py  # All 8 GraphFrames algorithms + visualizations
-├── requirements.txt                    # Python dependencies (NetworkX, Matplotlib, Pandas)
 └── README.md                          # This file
 ```
 
