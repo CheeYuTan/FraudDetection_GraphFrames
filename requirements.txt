@@ -1,0 +1,20 @@
+# Insurance Fraud Detection with GraphFrames
+# Requirements for Databricks
+
+# Core dependencies
+pyspark>=3.5.0
+graphframes>=0.8.2
+
+# Visualization
+matplotlib>=3.7.0
+networkx>=3.0
+pandas>=2.0.0
+
+# Optional: For enhanced visualizations
+plotly>=5.17.0
+seaborn>=0.12.0
+
+# Note: In Databricks, install GraphFrames via:
+# - Cluster Libraries -> Maven -> Coordinate: graphframes:graphframes:0.8.3-spark3.5-s_2.12
+# - Or via notebook: %pip install graphframes
+
