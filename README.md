@@ -10,10 +10,7 @@ This project demonstrates how GraphFrames outperforms traditional recursive SQL 
 
 - **Databricks Workspace** (or Databricks Free Edition)
 - **Databricks Runtime: 17.3 LTS ML** (Recommended - tested and verified)
-- **Cluster Type: Classic Compute** (not Serverless)
 - **GraphFrames library** (included in ML Runtime)
-
-> ⚠️ **Important**: Use **Classic Compute** clusters. Serverless is not supported for GraphFrames due to Maven dependencies and caching requirements.
 
 ## 🚀 Available GraphFrames Algorithms
 
@@ -65,7 +62,7 @@ GraphFrames provides **8 out-of-the-box graph algorithms** for distributed graph
 
 **GraphFrames** is an open-source Spark package created by Databricks. It is similar to Apache Spark GraphX, but its APIs are based on DataFrames. It adds additional functionality such as motif finding.
 
-GraphFrames is the **recommended library for graph analytics on top of Apache Spark**. GraphFrames is maintained but is not under active development. For customers, integrating 3rd-party libraries or tools can be a good approach, especially if they need more advanced graph libraries and can use single-machine tools.
+GraphFrames is the **recommended library for graph analytics on top of Apache Spark**.
 
 ### ✅ Reasons to Use GraphFrames:
 
@@ -80,12 +77,6 @@ GraphFrames is the **recommended library for graph analytics on top of Apache Sp
 - **You can use single-machine computation for graphs** - Your graph fits in memory on one machine
 - **You need a graph database with fast queries and updates** - Think "OLTP" (transactional processing)
 - **You need advanced or less common algorithms** - GraphFrames doesn't support specialized algorithms
-- **You need real-time graph updates** - GraphFrames is batch-oriented
-- **You require graph-specific query languages** - e.g., Cypher, Gremlin
-
-### 🎯 Target Customers:
-
-Organizations with graph use cases and with **experienced data scientists or developers** who can leverage distributed computing for large-scale graph analytics.
 
 ### ⚡ Databricks Optimizations:
 
@@ -109,18 +100,16 @@ Fraud GraphFrames/
 
 1. In Databricks, go to **Compute** → **Create Cluster**
 2. **Databricks Runtime**: Select **17.3 LTS ML** (or latest ML runtime)
-3. **Cluster Mode**: **Classic Compute** (NOT Serverless)
-4. Click **Create Cluster**
+3. Click **Create Cluster**
 
 > 💡 GraphFrames is pre-installed in ML Runtime, no additional libraries needed!
 
-### Step 2: Import Notebooks
+### Step 2: Import from Git
 
 1. In Databricks, navigate to **Workspace**
-2. Right-click your folder → **Import**
-3. Upload both `.py` notebook files:
-   - `01_Dataset_Generation.py`
-   - `02_GraphFrames_Fraud_Detection.py`
+2. Right-click your folder → **Create** → **Git Folder**
+3. Enter repository URL: `https://github.com/CheeYuTan/FraudDetection_GraphFrames.git`
+4. Click **Create**
 
 ### Step 3: Run Notebooks
 
@@ -128,7 +117,7 @@ Fraud GraphFrames/
    - Configure data volume using widgets (small/medium/large/xlarge)
    - Generates policyholders, claims, adjusters, service providers
    - Creates realistic fraud ring patterns
-   - Sets up catalog: `dbdemos_steventan.frauddetection_graphframe`
+   - Sets up data in your specified catalog and schema
 
 2. **Second**: Run `02_GraphFrames_Fraud_Detection.py`
    - Automatically installs required libraries (NetworkX, Matplotlib, Pandas)
@@ -140,23 +129,13 @@ Fraud GraphFrames/
 
 ### Volume Scales:
 
-| Scale | Policyholders | Claims | Processing Time |
-|-------|---------------|--------|-----------------|
-| **Small** | 1,000 | 5,000 | ~1 min |
-| **Medium** | 10,000 | 50,000 | ~3 min |
-| **Large** | 100,000 | 1,000,000 | ~10 min |
-| **XLarge** | 1,000,000 | 10,000,000 | ~30 min |
-| **Custom** | Your choice | Your choice | Varies |
-
-### Built-in Fraud Patterns:
-
-The data generator creates **realistic fraud rings** that GraphFrames algorithms will discover:
-
-- **5 suspicious adjusters** involved in multiple high-fraud claims
-- **8 suspicious service providers** frequently appearing in fraud cases
-- **15 repeat fraud policyholders** filing multiple suspicious claims
-- **4 fraud rings** with shared addresses and phone numbers (5 policyholders each)
-- **Triangle patterns** created through repeat collaborations (policyholder-adjuster-provider)
+| Scale | Policyholders | Claims |
+|-------|---------------|--------|
+| **Small** | 1,000 | 5,000 |
+| **Medium** | 10,000 | 50,000 |
+| **Large** | 100,000 | 1,000,000 |
+| **XLarge** | 1,000,000 | 10,000,000 |
+| **Custom** | Your choice | Your choice |
 
 ## 📊 Graph Structure
 
@@ -217,14 +196,6 @@ The notebooks include **5 interactive graph visualizations**:
 - 🟢 Adjusters (green triangles)
 - 🟣 Service Providers (purple triangles)
 
-## 📈 Performance
-
-GraphFrames scales to massive datasets on Databricks:
-
-- **1M claims**: ~2 minutes for all algorithms
-- **10M claims**: ~10 minutes with proper cluster sizing
-- **100M+ claims**: Linearly scalable with cluster resources
-
 ## 🎯 Real-World Applications
 
 ### Insurance Companies
@@ -248,25 +219,3 @@ GraphFrames scales to massive datasets on Databricks:
 - **Databricks GraphFrames Guide**: https://docs.databricks.com/aws/en/integrations/graphframes/
 - **Apache Spark GraphX**: https://spark.apache.org/graphx/
 - **Medium Article**: [How Graph Network Analysis Cut Insurance Fraud Investigation Time from Hours to Seconds](https://medium.com/@cheeyutcy/how-graph-network-analysis-cut-insurance-fraud-investigation-time-from-hours-to-seconds-8df2060b1fa4)
-
-## 🚀 Get Started Now!
-
-1. Create a **Databricks cluster** with **17.3 LTS ML** runtime (Classic Compute)
-2. Import both notebooks to your Databricks workspace
-3. Run `01_Dataset_Generation.py` to create fraud data
-4. Run `02_GraphFrames_Fraud_Detection.py` to analyze and visualize fraud patterns
-5. Explore the fraud networks and insights!
-
-## ✨ Key Results
-
-- **90% faster** fraud investigation compared to manual review
-- **3x more fraud detected** vs traditional rule-based systems
-- **Complete network mapping** vs isolated case analysis
-- **Proactive detection** vs reactive investigation
-
----
-
-Built with ❤️ for the data science and fraud prevention community.
-
-**Author**: Chee Yu Tan  
-**GitHub**: https://github.com/CheeYuTan/FraudDetection_GraphFrames
