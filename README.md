@@ -8,7 +8,7 @@ This project demonstrates how GraphFrames outperforms traditional recursive SQL 
 
 ## 📋 Prerequisites
 
-- **Databricks Workspace** (or Databricks Community Edition)
+- **Databricks Workspace** (or Databricks Free Edition)
 - **Databricks Runtime: 17.3 LTS ML** (Recommended - tested and verified)
 - **Cluster Type: Classic Compute** (not Serverless)
 - **GraphFrames library** (included in ML Runtime)
