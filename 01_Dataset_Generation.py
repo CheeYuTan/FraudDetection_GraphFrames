@@ -30,11 +30,7 @@
 # COMMAND ----------
 
 # Create widgets for configuration
-dbutils.widgets.dropdown("volume_scale", "small", ["small", "medium", "large", "xlarge", "custom"], "Volume Scale")
-dbutils.widgets.text("num_policyholders", "1000", "Number of Policyholders")
-dbutils.widgets.text("num_claims", "5000", "Number of Claims")
-dbutils.widgets.text("num_adjusters", "50", "Number of Adjusters")
-dbutils.widgets.text("num_service_providers", "200", "Number of Service Providers")
+dbutils.widgets.dropdown("volume_scale", "small", ["small", "medium", "large"], "Volume Scale")
 dbutils.widgets.text("high_fraud_rate", "0.15", "High Fraud Score Rate (0.0-1.0)")
 dbutils.widgets.text("catalog_name", "dbdemos_steventan", "Catalog Name")
 dbutils.widgets.text("schema_name", "frauddetection_graphframe", "Schema Name")
@@ -72,20 +68,13 @@ scale_configs = {
     "small": {"policyholders": 1000, "claims": 5000, "adjusters": 50, "providers": 200},
     "medium": {"policyholders": 10000, "claims": 50000, "adjusters": 200, "providers": 1000},
     "large": {"policyholders": 100000, "claims": 1000000, "adjusters": 500, "providers": 5000},
-    "xlarge": {"policyholders": 1000000, "claims": 10000000, "adjusters": 2000, "providers": 20000},
 }
 
-if volume_scale == "custom":
-    num_policyholders = int(dbutils.widgets.get("num_policyholders"))
-    num_claims = int(dbutils.widgets.get("num_claims"))
-    num_adjusters = int(dbutils.widgets.get("num_adjusters"))
-    num_service_providers = int(dbutils.widgets.get("num_service_providers"))
-else:
-    config = scale_configs[volume_scale]
-    num_policyholders = config["policyholders"]
-    num_claims = config["claims"]
-    num_adjusters = config["adjusters"]
-    num_service_providers = config["providers"]
+config = scale_configs[volume_scale]
+num_policyholders = config["policyholders"]
+num_claims = config["claims"]
+num_adjusters = config["adjusters"]
+num_service_providers = config["providers"]
 
 print(f"Configuration:")
 print(f"  Volume Scale: {volume_scale}")

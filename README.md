@@ -4,7 +4,7 @@ A comprehensive demonstration of using **Apache Spark GraphFrames** for insuranc
 
 ## 🎯 Overview
 
-This project demonstrates how GraphFrames outperforms traditional recursive SQL (CTEs) for fraud detection by leveraging distributed graph processing and rich algorithm libraries. Built for Databricks, it provides a scalable solution for detecting fraud rings, influential fraudsters, and suspicious patterns in insurance claims data.
+This project demonstrates GraphFrames as an alternative to traditional recursive SQL (CTEs) for fraud detection, leveraging distributed graph processing and pre-built graph algorithms. Built for Databricks, it provides a scalable solution for detecting fraud rings, influential fraudsters, and suspicious patterns in insurance claims data.
 
 ## 📋 Prerequisites
 
@@ -134,8 +134,6 @@ Fraud GraphFrames/
 | **Small** | 1,000 | 5,000 |
 | **Medium** | 10,000 | 50,000 |
 | **Large** | 100,000 | 1,000,000 |
-| **XLarge** | 1,000,000 | 10,000,000 |
-| **Custom** | Your choice | Your choice |
 
 ## 📊 Graph Structure
 
